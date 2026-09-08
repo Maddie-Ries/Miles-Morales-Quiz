@@ -83,8 +83,6 @@ body {
     background-color: #BFE193;
 }
 
-
-
 /* Make start button in the middle of the page and the right size*/
 .Picture {
     display: block;
@@ -97,6 +95,8 @@ body {
 .NextQ {
     cursor: pointer;
     background-color:#96ADFC;
+    width: 100px;
+    height: 30px;
 }
 
 
