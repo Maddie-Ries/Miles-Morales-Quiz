@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+    <head>
+        <title>Miles Morales Quiz</title>
+        <link rel="stylesheet" href="Miles.css">
+    </head>
+    <body>
+        <!--Title-->
+        <h1
+        style = "text-align: center; color: #ff0000; font-size: 50px;"
+        >Miles Morales Quiz</h1>
+
+        <!--Intro Page-->
+        <div
+        id = "IntroPage"
+        >
+            <h2
+            style = "color: white;"
+            id = "IntroLine"
+            >
+            Ready to test your knowledge of Miles Morales?</h2>
+            <div class="wrapper">
+                <button id = "StartButton"
+                class = "button"
+                onclick = "OpenTab(event,'StartQuiz')"
+                >Start Quiz</button>
+            </div>
+        </div>
+
+        <!--Quiz Page-->
+        <!--Score box-->
+        <div
+            id = "Question Area">
+        
+            <div
+            id = "ScoreBox">
+                <h2 id = "Score"
+                style = "color: white;">Score: 0</h2>
+                <p> </p>
+            </div>
+            <!--Question box-->
+            <div id="StartQuiz" class="tabcontent">
+                <div id = "QuestionBox" style="border: 2px solid #ff0000; border-radius: 10px; background-color:#96ADFC; padding: 15px; width: 600px">
+                    <h2 id = "Question">Question: 0</h2>
+                    <p id = "QuestionText"> </p>
+                </div>
+                <p> </p>
+                <!--Answer Buttons-->
+                <div style="display: flex; gap: 20px; width: 100%; box-sizing: border-box;">          
+                    <div style="flex: 1; padding: 15px; border-radius: 5px;">
+                        <button
+                            id = "ButtonA"
+                            class = "AnswerButton"
+                            onclick = "CheckAnswer('A', CorrectAnswer)"
+                        >A </button>    
+                    </div>
+                    <div style="flex: 1; padding: 15px; border-radius: 5px; ">
+                        <button
+                            id = "ButtonB"
+                            class = "AnswerButton"
+                            onclick = "CheckAnswer('B', CorrectAnswer)"
+                        >B </button>  
+                    </div>
+                </div> 
+                    <p> </p>
+                <div style="display: flex; gap: 20px; width: 100%; box-sizing: border-box;">
+                    <div style="flex: 1; padding: 15px; border-radius: 5px; ">  
+                        <button
+                            id = "ButtonC"
+                            class = "AnswerButton"
+                            onclick = "CheckAnswer('C', CorrectAnswer)"
+                        >C </button>  
+                    </div> 
+                    <div style="flex: 1; padding: 15px; border-radius: 5px; ">
+                        <button
+                            id = "ButtonD"
+                            class = "AnswerButton"
+                            onclick = "CheckAnswer('D', CorrectAnswer)"
+                        >D </button>  
+                    </div>
+                </div>
+                <div>
+                    <button
+                        id = "NextQButton"
+                        class = "NextQ" 
+                    >Next Question </button>                  
+                </div>
+            </div>
+        </div>
+        <!--Results page-->
+        <div id = "ResultsPage">
+            <h2 id = "Score"
+            class = "Score"></h2>
+            <h1
+            id = "FinalResult"
+            style = "text-align: center; color: white;"> 
+            </h1>
+            <img src="Miles Morales.jpg" alt="Description" class="Picture" id = "Picture1">
+            <img src="Tufff.jpg" alt="Description" class="Picture" id = "Picture2">
+        </div>
+
+    </body>
+    <script src ="Miles.js"></script>
+
+</html>
