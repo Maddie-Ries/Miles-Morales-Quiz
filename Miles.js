@@ -16,9 +16,19 @@ let Picture2 = document.getElementById("Picture2")
 let QPage = document.getElementById("Question Area")
 let RPage = document.getElementById("ResultsPage")
 let FinalResult = document.getElementById("FinalResult");
+let IntroLine = document.getElementById("IntroLine")
+
+//Setting variables
+let Count = 0;
+let score = 0;
+let CorrectAnswer;
+let index;
+let Quiz =[]
+
 
 //Questions and answers
-let Quiz = [
+function Questions(){
+    Quiz = [
     ["What unique power does Miles Morales have?","Invisibility",'Flight',"Bio-electric venom blast", "Super strength","C"],
     ["Who is Miles Morales' best friend?","Ned Leeds","Flash Thompson","Harry Osborn","Ganke Lee","D"],
     ["What is the name of Miles Morales' father?","Jefferson Davis","Peter Parker","Norman Osborn","Otto Octavius","A"],
@@ -50,27 +60,21 @@ let Quiz = [
     ["What is Peni Parker's robot called?","Arachnid","SPIDER-X","SP//dr","PENI-01","D"],
     ['Which villain causes the multiverse to collide in the first film?',"Green Goblin", 'Venom', "Doctor Octopus", "Kingpin", "D"],
     ["Which Spider-Person comes from a black and white comicbook universe?","Spider-Ham", "Peni Parker", "Spider-Man Noir", "Spider-Gwen", "C"],
-    ["What is Gwen Stacy’s superhero name?", "Spider-Woman", "Ghost-Spider", "Spider-Gwen", "Silk", "C"],
+    ["What is Gwen Stacys superhero name?", "Spider-Woman", "Ghost-Spider", "Spider-Gwen", "Silk", "C"],
     ["What is the name of the villain chasing Miles throughout Across the Spider-Verse?", "The Spot", "Morbius", "The Prowler", "Scorpion", "A"],
     ["Who leads the Spider Society in Across the Spider-Verse?","Peter Parker","Miguel O'Hara","Jessica Drew","Hobie Brown","B"],
     ["What is a “canon event” in Across the Spider-Verse?", "A battle with Venom","A moment that happens in every Spider-Persons story","A portal between universes","A Spider Society meeting","B"]
-]
+    ]
+}
 
-// Dont show the score in the intro page
-Score.style.display = "none";
-QPage.style.display = "none"
-RPage.style.display = "none"
-
-//Setting variables
-let Count = 0;
-let score = 0;
-let CorrectAnswer;
-let index;
+// Dont show other pages in the intro page
+QPage.style.display = "none";
+Picture1.style.display = "none";
+Picture2.style.display = "none";
 
 //Get a random number for the question index
 function getRandomInt() {
-    max = Quiz.length - 1;
-    index =  Math.floor(Math.random() * max);
+    index =  Math.floor(Math.random() * Quiz.length);
 }
 
 //Getting next question using the random index
@@ -99,45 +103,8 @@ function NextQuestion(index){
 
 }
 
-//Setting up quiz
-//Once start button is pressed
-StartButton.addEventListener("click", function(){
-
-    //Remove itro page 
-    StartButton.style.display = "none";
-    IntroPage.style.display = "none";
-
-    //Display the score
-    Score.style.display = "block";
-    QPage.style.display = "block"
-
-    //Get question
-    Count++
-    getRandomInt();
-    NextQuestion(index)
-
-    //Remove from page
-    NextQButton.style.display = "none";
-    FinalResult.style.display = "none";
-});
-
-// Next question
-NextQButton.addEventListener("click", function(){
-    if (Count == 11){
-        Count--
-        //Remove questions and buttons
-        NextQButton.style.display = "none";
-        GetElementA.style.display = "none";
-        GetElementB.style.display = "none";
-        GetElementC.style.display = "none";
-        GetElementD.style.display = "none";
-        QuestionBox.style.display = "none";
-        Score.style.display = "none";
-        RPage.style.display = "block"
-        
-        //get result 
-        CalculateScore(score, Count);
-    }else{
+//Enable answer buttons
+function EnableQButtons(){
         //Enable answer buttons
         GetElementA.disabled = false;
         GetElementB.disabled = false;
@@ -149,12 +116,58 @@ NextQButton.addEventListener("click", function(){
         GetElementB.classList.remove("WrongAnswer", "CorrectAnswer");
         GetElementC.classList.remove("WrongAnswer", "CorrectAnswer");
         GetElementD.classList.remove("WrongAnswer", "CorrectAnswer");
+}
+
+//Setting up quiz
+//Once start button is pressed
+StartButton.addEventListener("click", function(){
+
+    //Remove itro page 
+    IntroPage.style.display = "none";
+    RPage.style.display = "none"
+    NextQButton.textContent = "Next Question"
+
+    //Reseeting variables
+    score = 0
+    Count = 0 
+
+    //Display the score
+    Score.textContent = `Score:${score}`;
+    QPage.style.display = "block"
+
+    //Get question
+    Questions()
+    Count++
+    getRandomInt();
+    NextQuestion(index)
+
+    //Remove from page
+    NextQButton.style.display = "none";
+
+    EnableQButtons()
+});
+
+// Next question
+NextQButton.addEventListener("click", function(){
+    if (Count == 11){
+        Count--
+        //Remove questions and buttons
+
+        QPage.style.display = "none";
+        RPage.style.display = "block";
+        
+        //get result 
+        CalculateScore(score, Count);
+    }else{
+        EnableQButtons()
 
         //Getting question 
         getRandomInt();
         NextQuestion(index)
+
         //Remove next question button
         NextQButton.style.display = "none";
+
         //Result page 
         if (Count == 10) {
             //Remove questions and buttons
@@ -164,36 +177,9 @@ NextQButton.addEventListener("click", function(){
 
 });
 
-// Get elements with class="tabcontent" and hide them
-tabcontent = document.getElementsByClassName("tabcontent");
-tabcontent[0].style.display = "none";
-
-
-//Function for clicking on the Start button to open the quiz 
-function OpenTab(evt, TabName) {
-  // Declare all variables
-  var i, tabcontent, tablinks;
-
-  // Get all elements with class="tabcontent" and hide them
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-
-  // Get all elements with class="tablinks" and remove the class "active"
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-
-  // Show the current tab, and add an "active" class to the button that opened the tab
-  document.getElementById(TabName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-
 // Checking answers to the question
 function CheckAnswer(selectedOption, CorrectAnswer) {
-    //Show next questio button
+    //Show next question button
     NextQButton.style.display = "block";
 
     //Disable answer buttons
@@ -201,7 +187,6 @@ function CheckAnswer(selectedOption, CorrectAnswer) {
     GetElementB.disabled = true;
     GetElementC.disabled = true;
     GetElementD.disabled = true;
-
 
     //Changing class name to change colours of correct & incorrect answers
     GetElementA.classList.add("WrongAnswer");
@@ -232,10 +217,7 @@ function CheckAnswer(selectedOption, CorrectAnswer) {
     Count++
     //Score update 
     Score.textContent = `Score:${score}/${Count - 1}`;
-
-
 }
-
 
 // Calculate score
 function CalculateScore(Score,QuestionNumber){
@@ -256,7 +238,11 @@ function CalculateScore(Score,QuestionNumber){
         Picture2.style.display = "block";
         
     }
+    IntroPage.style.display = "block"
+    IntroLine.style.display = "none"
     FinalResult.style.display = "block";
-    
-    
+    StartButton.textContent = "Play again";
+    StartButton.classList.add("playAgain");
+    StartButton.style.display = "block";  
+
 }
