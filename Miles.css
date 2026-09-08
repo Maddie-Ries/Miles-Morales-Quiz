@@ -1,0 +1,93 @@
+/* Add background image*/
+body {
+    background-color: #000000;
+    background-image: url('Fondo de telaraña rya🕸.jpg');
+    background-size: cover;
+}
+
+/* Make start button in the middle of the page and the right size*/
+.wrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.button {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    width: 300px;
+    height: 150px;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    background-color:#96ADFC; 
+    font-size: 35px;
+    border-color: #ff0000;
+    border-width: 2px;
+    border-style: solid;
+    cursor: pointer;
+}
+
+/* Answer buttons*/
+.AnswerButton {
+    display: block;
+    width: 75%;
+    height: 100px;
+    margin: 0 auto;
+    background-color: #96ADFC;
+    border-radius: 10px;
+    font-size: 24px;
+    border-color: #ff0000;
+    border-width: 2px;
+    border-style: solid;
+    cursor: pointer;
+}
+
+/* Answer colours*/
+/* Wrong answer */
+.WrongAnswer {
+    background-color: #FFD1D1;
+    cursor: auto;
+}
+
+/* Correct answer */
+.CorrectAnswer {
+    background-color: #BFE193;
+    cursor: auto;
+}
+
+/* Hover colour*/
+.AnswerButton:hover {
+  background-color: #24419A;
+}
+.button:hover {
+  background-color: #24419A;
+}
+/* Wrong answer */
+.WrongAnswer:hover {
+    background-color: #FFD1D1;
+}
+
+/* Correct answer */
+.CorrectAnswer:hover {
+    background-color: #BFE193;
+}
+
+
+
+/* Make start button in the middle of the page and the right size*/
+.Picture {
+    display: block;
+    width: 50%;
+    height: auto;
+    margin: 20px auto;
+}
+
+/*Next question or results button*/
+.NextQ {
+    cursor: pointer;
+    background-color:#96ADFC;
+}
+
+
+
